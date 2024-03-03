@@ -70,31 +70,24 @@
         letters.forEach(function(letter) {
             letter.addEventListener('mouseover', function() {
                 resetStyles();
-                highlightAdjacent(this);
+                textBold(this);
             });
         });
 
         function resetStyles() {
-            var allSpans = document.querySelectorAll('h1 span');
+            var allSpans = document.querySelectorAll('.letter');
             allSpans.forEach(function(span) {
                 span.style.fontWeight = '300';
             });
         }
 
-        function highlightAdjacent(element) {
+        function textBold(element) {
             element.style.fontWeight = '600';
-            var nextSpan = element.nextElementSibling;
-            var prevSpan = element.previousElementSibling;
+            const nextSpan = element.nextElementSibling;
+            const prevSpan = element.previousElementSibling;
             if (nextSpan) {
                 nextSpan.style.fontWeight = '600';
-                nextSpan.style.transition.duration = 500;
                 prevSpan.style.fontWeight = '600';
-            }
-            var parent = element.parentElement;
-            var index = Array.prototype.indexOf.call(parent.children, element);
-            var nextRowSpan = parent.nextElementSibling && parent.nextElementSibling.children[index];
-            if (nextRowSpan) {
-                nextRowSpan.style.fontWeight = '600';
             }
         }
     </script>

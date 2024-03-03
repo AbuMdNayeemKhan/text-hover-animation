@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+    <style>
+        body{
+            background-color: #EBE3D5;
+        }
+        h1{
+            font-size: 115px;
+            max-width: 1222px;
+            text-align: center;
+            margin: 0 auto;
+            color: #614B48;
+            font-weight: 300;
+            transition-duration: 300ms;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="letter">A SANCTUARY INSPIRED BY THE COSMIC RADIANCE OF THE SUN</h1>
+
+    <script>
+        var letters = document.getElementById('letter').textContent;
+        var letterContainer = document.getElementById('letter');
+        letterContainer.innerHTML = '';
+        letters.split('').forEach(function(letter) {
+            var span = document.createElement('span');
+            span.textContent = letter;
+            letterContainer.appendChild(span);
+        });
+
+        var spans = document.querySelectorAll('#letter span');
+
+        spans.forEach(function(span) {
+            span.addEventListener('mouseover', function() {
+                resetStyles();
+                textBold(this);
+            });
+        });
+
+        function resetStyles() {
+            spans.forEach(function(span) {
+                span.style.fontWeight = '300';
+            });
+        }
+
+        function textBold(element) {
+            element.style.fontWeight = '600';
+            const index = Array.from(spans).indexOf(element);
+            const nextSpan = spans[index + 1];
+            const prevSpan = spans[index - 1];
+            if (nextSpan) {
+                nextSpan.style.fontWeight = '600';
+            }
+            if (prevSpan) {
+                prevSpan.style.fontWeight = '600';
+            }
+        }
+    </script>
+</body>
+</html>
