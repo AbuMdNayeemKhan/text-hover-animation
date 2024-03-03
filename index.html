@@ -10,15 +10,93 @@
             max-width: 777px;
             text-align: center;
             margin: 0 auto;
-            font-weight: 300;
-            transition-duration: 300ms;
         }
-        h1 span:hover{
-            font-weight: 600;
+        h1 span{
+            font-weight: 300; 
         }
     </style>
 </head>
 <body>
-    <h1><span>A</span> <span>A</span><span>A</span><span>N</span><span>C</span><span>T</span><span>U</span><span>A</span><span>R</span><span>Y</span> <span>I</span><span>N</span><span>S</span><span>P</span><span>I</span><span>R</span><span>E</span><span>D</span> <span>B</span><span>Y</span> <span>T</span><span>H</span><span>E</span> <span>C</span><span>O</span><span>S</span><span>M</span><span>I</span><span>C</span> <span>R</span><span>A</span><span>D</span><span>I</span><span>A</span><span>N</span><span>C</span><span>E</span> <span>O</span><span>F</span> <span>T</span><span>H</span><span>E</span> <span>S</span><span>U</span><span>N</span></h1>
+    <h1>
+        <span class="letter">A</span> 
+        <span class="letter">A</span>
+        <span class="letter">A</span>
+        <span class="letter">N</span>
+        <span class="letter">C</span>
+        <span class="letter">T</span>
+        <span class="letter">U</span>
+        <span class="letter">A</span>
+        <span class="letter">R</span>
+        <span class="letter">Y</span> 
+        <span class="letter">I</span>
+        <span class="letter">N</span>
+        <span class="letter">S</span>
+        <span class="letter">P</span>
+        <span class="letter">I</span>
+        <span class="letter">R</span>
+        <span class="letter">E</span>
+        <span class="letter">D</span> 
+        <span class="letter">B</span>
+        <span class="letter">Y</span>
+        <span class="letter">T</span>
+        <span class="letter">H</span>
+        <span class="letter">E</span>
+        <span class="letter">C</span>
+        <span class="letter">O</span>
+        <span class="letter">S</span>
+        <span class="letter">M</span>
+        <span class="letter">I</span>
+        <span class="letter">C</span> 
+        <span class="letter">R</span>
+        <span class="letter">A</span>
+        <span class="letter">D</span>
+        <span class="letter">I</span>
+        <span class="letter">A</span>
+        <span class="letter">N</span>
+        <span class="letter">C</span>
+        <span class="letter">E</span> 
+        <span class="letter">O</span>
+        <span class="letter">F</span>
+        <span class="letter">T</span>
+        <span class="letter">H</span>
+        <span class="letter">E</span>
+        <span class="letter">S</span>
+        <span class="letter">U</span>
+        <span class="letter">N</span>
+    </h1>
+
+    <script>
+        var letters = document.querySelectorAll('.letter');
+        letters.forEach(function(letter) {
+            letter.addEventListener('mouseover', function() {
+                resetStyles();
+                highlightAdjacent(this);
+            });
+        });
+
+        function resetStyles() {
+            var allSpans = document.querySelectorAll('h1 span');
+            allSpans.forEach(function(span) {
+                span.style.fontWeight = '300';
+            });
+        }
+
+        function highlightAdjacent(element) {
+            element.style.fontWeight = '600';
+            var nextSpan = element.nextElementSibling;
+            var prevSpan = element.previousElementSibling;
+            if (nextSpan) {
+                nextSpan.style.fontWeight = '600';
+                nextSpan.style.transition.duration = 500;
+                prevSpan.style.fontWeight = '600';
+            }
+            var parent = element.parentElement;
+            var index = Array.prototype.indexOf.call(parent.children, element);
+            var nextRowSpan = parent.nextElementSibling && parent.nextElementSibling.children[index];
+            if (nextRowSpan) {
+                nextRowSpan.style.fontWeight = '600';
+            }
+        }
+    </script>
 </body>
 </html>
